@@ -1,9 +1,10 @@
-.idea/*
-.bsp/*
-target/*
-project/*
+/.idea/
+/.bsp/*
+/target/*
+/project/*
 *.iml
 
 !project/build.properties
 !project/plugins.sbt
 !project/Dependencies.scala
+/dataset/*

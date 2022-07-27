@@ -1,7 +1,7 @@
 package testChernov.labs
 
+import testChernov.system._
 import org.apache.spark.sql.{DataFrame, SparkSession}
-import org.apache.spark.sql.types._
 import org.apache.spark.sql.functions._
 
 case class Lab12(spark: SparkSession) {
@@ -9,43 +9,19 @@ case class Lab12(spark: SparkSession) {
     println("Lab 12 started")
     import spark.implicits._
 
-    val customerSchema = StructType(
-      StructField("ID", IntegerType, nullable = false) ::
-        StructField("Name", StringType, nullable = true) ::
-        StructField("Email", StringType, nullable = true) ::
-        StructField("Date", DateType, nullable = true) ::
-        StructField("Status", StringType, nullable = true) ::
-        Nil)
-    val orderSchema = StructType(
-      StructField("Customer_ID", IntegerType, nullable = false) ::
-        StructField("Order_ID", IntegerType, nullable = false) ::
-        StructField("Product_ID", IntegerType, nullable = false) ::
-        StructField("Number_Of_Products", IntegerType, nullable = true) ::
-        StructField("Order_Date", DateType, nullable = true) ::
-        StructField("Status", StringType, nullable = true) ::
-        Nil)
-    val orderInfoSchema = StructType(
-      StructField("ID", IntegerType, nullable = false) ::
-        StructField("Departure_Date", DateType, nullable = true) ::
-        StructField("Transfer_Date", DateType, nullable = true) ::
-        StructField("Delivery_Date", DateType, nullable = true) ::
-        StructField("Departure_City", StringType, nullable = true) ::
-        StructField("Delivery_City", StringType, nullable = true) ::
-        Nil)
-
     val customerDF: DataFrame = spark.read
       .options(Map("delimiter" -> "\\t",
         "dateFormat" -> "dd.MM.yyyy"))
-      .schema(customerSchema)
-      .csv("./dataset/customer/customer.csv")
+      .schema(Parameters.customerSchema)
+      .csv(Parameters.path_customer)
       .filter('Name === "John")
       .drop('Status)
 
     val orderDF: DataFrame = spark.read
       .options(Map("delimiter" -> "\\t",
         "dateFormat" -> "dd.MM.yyyy"))
-      .schema(orderSchema)
-      .csv("./dataset/order/order.csv")
+      .schema(Parameters.orderSchema)
+      .csv(Parameters.path_order)
 
     val ordersJohn = orderDF.join(customerDF, 'customer_ID === 'ID)
       .filter('Status === "delivered")
@@ -54,8 +30,8 @@ case class Lab12(spark: SparkSession) {
     val orderInfoDF: DataFrame = spark.read
       .options(Map("delimiter" -> "\\t",
         "dateFormat" -> "dd.MM.yyyy"))
-      .schema(orderInfoSchema)
-      .csv("./dataset/order-info/order-info.csv")
+      .schema(Parameters.orderInfoSchema)
+      .csv(Parameters.path_order_info)
 
     val orderInfoArray = orderInfoDF
       .select('ID,

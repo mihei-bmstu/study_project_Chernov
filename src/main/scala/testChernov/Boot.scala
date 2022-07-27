@@ -23,10 +23,10 @@ object Boot {
     lab7.lab7SQLTables()
 
     val lab8 = Lab8(spark)
-    lab8.Lab8TableColumns()
+    lab8.lab8TableColumns()
 
     val lab9 = Lab9(spark)
-    lab9.Lab9ProcessingTables()
+    lab9.lab9ProcessingTables()
 
     Lab10(spark).lab10ProcessingTables()
 

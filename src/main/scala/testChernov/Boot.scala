@@ -30,6 +30,8 @@ object Boot {
 
     Lab10(spark).lab10ProcessingTables()
 
+    Lab11(spark).lab11WindowFunction()
+
   }
 
 }

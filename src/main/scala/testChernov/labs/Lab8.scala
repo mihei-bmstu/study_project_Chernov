@@ -6,6 +6,8 @@ import org.apache.spark.sql.functions._
 
 case class Lab8(spark: SparkSession) {
   def Lab8TableColumns(): Unit = {
+    println("Lab 8 started")
+
     val productSchema = StructType(
       StructField("ID", IntegerType, nullable = false) ::
         StructField("Name", StringType, nullable = true) ::
@@ -28,7 +30,6 @@ case class Lab8(spark: SparkSession) {
     val deviceUDF = udf(getTypeDevice)
     val productDF: Unit = spark.read
       .options(Map("delimiter" -> "\\t",
-        "header" -> "true",
         "dateFormat" -> "dd.MM.yyyy"))
       .schema(productSchema)
       .csv("./dataset/product/product.csv")
@@ -39,5 +40,6 @@ case class Lab8(spark: SparkSession) {
       .select("Name", "New_Price", "Type")
       .show()
 
+    println("Lab 8 finished")
   }
 }

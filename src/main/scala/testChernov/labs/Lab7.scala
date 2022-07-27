@@ -5,6 +5,7 @@ import org.apache.spark.sql.types._
 
 case class Lab7(spark: SparkSession) {
   def lab7SQLTables(n: Int = 10, trim: Boolean = true): Unit = {
+    println("Lab 7 started")
 
     val customerSchema = StructType(
         StructField("ID", IntegerType, nullable = false) ::
@@ -32,7 +33,6 @@ case class Lab7(spark: SparkSession) {
 
     val customerDF: Unit = spark.read
       .options(Map("delimiter" -> "\\t",
-        "header" -> "true",
         "dateFormat" -> "dd.MM.yyyy"))
       .schema(customerSchema)
       .csv("./dataset/customer/customer.csv")
@@ -40,7 +40,6 @@ case class Lab7(spark: SparkSession) {
 
     val orderDF: Unit = spark.read
       .options(Map("delimiter" -> "\\t",
-        "header" -> "true",
         "dateFormat" -> "dd.MM.yyyy"))
       .schema(orderSchema)
       .csv("./dataset/order/order.csv")
@@ -48,7 +47,6 @@ case class Lab7(spark: SparkSession) {
 
     val productDF: Unit = spark.read
       .options(Map("delimiter" -> "\\t",
-        "header" -> "true",
         "dateFormat" -> "dd.MM.yyyy"))
       .schema(productSchema)
       .csv("./dataset/product/product.csv")
@@ -59,5 +57,6 @@ case class Lab7(spark: SparkSession) {
         |SELECT DISTINCT customer_id, order_date FROM order WHERE status = 'delivered'
         |""".stripMargin).show(n, trim)
 
+    println("Lab 7 finished")
   }
 }

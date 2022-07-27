@@ -28,6 +28,8 @@ object Boot {
     val lab9 = Lab9(spark)
     lab9.Lab9ProcessingTables()
 
+    Lab10(spark).lab10ProcessingTables()
+
   }
 
 }

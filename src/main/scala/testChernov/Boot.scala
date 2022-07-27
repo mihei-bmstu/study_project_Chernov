@@ -16,22 +16,14 @@ object Boot {
 
     import spark.implicits._
 
-/*    val lab1 = new Lab1(spark)
+    /*val lab1 = new Lab1(spark)
     lab1.lab1ReduceByKey()*/
 
-    val lab7 = Lab7(spark)
-    lab7.lab7SQLTables()
-
-    val lab8 = Lab8(spark)
-    lab8.lab8TableColumns()
-
-    val lab9 = Lab9(spark)
-    lab9.lab9ProcessingTables()
-
+    Lab7(spark).lab7SQLTables()
+    Lab8(spark).lab8TableColumns()
+    Lab9(spark).lab9ProcessingTables()
     Lab10(spark).lab10ProcessingTables()
-
     Lab11(spark).lab11WindowFunction()
-
     Lab12(spark).lab12SQLCollections()
 
   }

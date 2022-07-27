@@ -19,8 +19,11 @@ object Boot {
 /*    val lab1 = new Lab1(spark)
     lab1.lab1ReduceByKey()*/
 
-    val lab7 = Lab7(spark)
-    lab7.lab7SQLTables()
+    /*val lab7 = Lab7(spark)
+    lab7.lab7SQLTables()*/
+
+    val lab8 = Lab8(spark)
+    lab8.Lab8TableColumns()
 
   }
 

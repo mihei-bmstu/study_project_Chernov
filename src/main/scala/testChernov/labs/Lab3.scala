@@ -43,6 +43,6 @@ case class Lab3(spark: SparkSession) {
 
     println("(Customer, Date), Sum orders")
     joinedProduct.foreach(println)
-    print("Lab 3 finished")
+    println("Lab 3 finished")
   }
 }

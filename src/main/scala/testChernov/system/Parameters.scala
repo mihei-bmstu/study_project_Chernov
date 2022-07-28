@@ -14,6 +14,12 @@ case class Product(ID: Integer,
                    Price: Double,
                    Number_Of_Products: Integer)
 
+case class Customer(ID: Integer,
+                    Name: String,
+                    Email: String,
+                    Date: String,
+                    Status: String)
+
 object Parameters {
 
   val path_customer = "./dataset/customer/customer.csv"

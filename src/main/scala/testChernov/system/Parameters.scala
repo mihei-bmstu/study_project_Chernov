@@ -2,7 +2,20 @@ package testChernov.system
 
 import org.apache.spark.sql.types._
 
+case class Order(Customer_ID: Integer,
+                 Order_ID: Integer,
+                 Product_ID: Integer,
+                 Number_Of_Products: Integer,
+                 Order_Date: String,
+                 Status: String)
+
+case class Product(ID: Integer,
+                   Name: String,
+                   Price: Double,
+                   Number_Of_Products: Integer)
+
 object Parameters {
+
   val path_customer = "./dataset/customer/customer.csv"
   val path_order = "./dataset/order/order.csv"
   val path_product = "./dataset/product/product.csv"

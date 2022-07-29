@@ -1,6 +1,7 @@
 package testChernov.system
 
 import org.apache.spark.sql.types._
+import java.io.File
 
 case class Order(Customer_ID: Integer,
                  Order_ID: Integer,
@@ -21,6 +22,10 @@ case class Customer(ID: Integer,
                     Status: String)
 
 object Parameters {
+  def getListOfFiles(dir: String): List[String] = {
+    val file = new File(dir)
+    file.listFiles.map(_.getName).toList
+  }
 
   val path_customer = "./dataset/customer/customer.csv"
   val path_order = "./dataset/order/order.csv"

@@ -27,7 +27,7 @@ object Boot {
     Lab10(spark).lab10ProcessingTables()
     Lab11(spark).lab11WindowFunction()
     Lab12(spark).lab12SQLCollections()
+    Perm(spark).permStat()
 
   }
-
 }

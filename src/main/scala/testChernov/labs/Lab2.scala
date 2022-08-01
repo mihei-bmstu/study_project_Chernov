@@ -25,13 +25,18 @@ case class Lab2(spark: SparkSession) {
       .map { case Order(_, _, x3, x4, _, _) => (x3, x4) }
 
     val productSoldGrouped = orderRDD.reduceByKey(_ + _)
-    println(s"Total products: " + productSoldGrouped.map(x => x._2).reduce(_ + _))
+    println(s"Total products: " + productSoldGrouped.map(_._2).reduce(_ + _))
 
     val joinedRDD = productRDD.leftOuterJoin(productSoldGrouped)
-    val filteredJoinedRDD = joinedRDD.filter(x => x._2._2.isEmpty)
+   // val filteredJoinedRDD = joinedRDD.filter(x => x._2._2.isEmpty) //Никогда так не писать
+   //val filteredJoinedRDD = joinedRDD.filter { case (_, (_, optionalField)) => optionalField.isEmpty }
+   val filteredJoinedRDD = joinedRDD.flatMap { case (_, (value, opField)) =>
+      opField.map(_ => value)
+    }
+
 
     println("Products with no orders: ")
-    filteredJoinedRDD.foreach(l => println(l._2._1))
+    filteredJoinedRDD.foreach(println)
     println("Lab 2 finished")
   }
 }

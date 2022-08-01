@@ -17,8 +17,10 @@ case class Lab1 (spark: SparkSession) {
 
     val rddFiltered = rddFromFile
       .filter(_.Status == "delivered")
-      .map { case Order(x1, x2, x3, x4, x5, x6) => (x1, (x4, 1)) }
-      .reduceByKey((x, y) => (x._1 + y._1, x._2 + y._2))
+      .map { order =>
+        (order.Customer_ID, (order.Number_Of_Products, 1))
+      }
+      .reduceByKey((x, y) => (x._1 + y._1, x._2 + y._2)) //аналогично
 
     println("Client ID, Total products, Number of orders")
     rddFiltered.foreach(println)

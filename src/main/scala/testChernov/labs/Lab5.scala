@@ -15,7 +15,7 @@ case class Lab5(spark: SparkSession) {
       .as[Order]
       .rdd
       .filter(_.Status == "delivered")
-      .map{ case Order(custID, orderID, prodID, numberProd, orderDate, status) =>
+      .map{ case Order(custID, _, _, numberProd, _, _) =>
         (custID, (numberProd, 1))}
       .reduceByKey { case ((v1, c1), (v2, c2)) => (v1 + v2, c1 + c2)}
       .mapValues { case (v, c) =>  (v, c, v.toDouble / c.toDouble)}

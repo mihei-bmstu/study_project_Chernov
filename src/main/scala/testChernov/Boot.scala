@@ -15,19 +15,19 @@ object Boot {
       .appName("testChernov")
       .getOrCreate()
 
-    Lab1(spark).lab1ReduceByKey()
+ /*   Lab1(spark).lab1ReduceByKey()
     Lab2(spark).lab2Join()
     Lab3(spark).lab3Join()
     Lab4(spark).lab4CompositeKey()
-    Lab5(spark).lab5GroupBy()
-    Lab6(spark).lab6AggregateBy()
-    Lab7(spark).lab7SQLTables()
+    Lab5(spark).lab5GroupBy()*/
+   Lab6(spark).lab6AggregateBy()
+   /* Lab7(spark).lab7SQLTables()
     Lab8(spark).lab8TableColumns()
     Lab9(spark).lab9ProcessingTables()
     Lab10(spark).lab10ProcessingTables()
     Lab11(spark).lab11WindowFunction()
     Lab12(spark).lab12SQLCollections()
-    Perm(spark).permStat()
+    Perm(spark).permStat()*/
 
   }
 }
